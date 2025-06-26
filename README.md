@@ -9,27 +9,6 @@ python main.py
 
 This process will create a text file containing the exported data from your SQL database. If you encounter any issues, make sure you have Python installed on your system and that all required dependencies for the script are available. **The generated text file can't be opened and edited with any standard text editor due to its size!**
 
-## Sort and Remove Duplicates
-
-To organize your data and ensure there are no duplicate entries, follow these steps:
-
-1. First, create a new text file named `NISTWhiteList.txt` and add the header "MD5" to it by running:
-
-```bash
-echo "MD5" > NISTWhiteList.txt
-```
-
-2. Next, sort the contents of your existing file (`NISTHashSet.txt`) and remove any duplicate lines. This is accomplished using the following command:
-
-```bash
-pv NISTHashSet.txt | sort --parallel=8 --buffer-size=16G | uniq >> NISTWhiteList.txt
-```
-
-    - `pv` is used to monitor the progress of the operation, which is helpful if you are working with large files.
-    - `sort` organizes the lines in alphabetical order, making it easier to find duplicates.
-    - `uniq` removes any duplicate lines, ensuring each MD5 hash appears only once.
-    - The sorted and deduplicated data is then appended to `NISTWhiteList.txt`.
-
 These commands are typically run in a Unix-like terminal (such as Linux or macOS). If you are using Windows, you may need to install additional tools or use the Windows Subsystem for Linux (WSL).
 
 ## Processing an XML File Containing Known Files and Extracting a List of MD5 Hashes
@@ -51,7 +30,6 @@ This step is useful if you need a clean list of all MD5 hashes from a complex XM
 **Summary for Non-Technical Users:**
 
 - You start by exporting your database to a text file using a Python script.
-- Next, you clean up your data by sorting it and removing duplicates, ensuring you have a tidy list.
 - Finally, you can extract specific information (like MD5 hashes) from an XML report and save it as a simple list for further use.
 
 Each step uses command-line tools, which are standard utilities on most Unix-like systems. If you are new to the command line or working on Windows, you may need to install additional tools or seek help with the setup. The instructions provided are designed to automate repetitive tasks and ensure data accuracy throughout your workflow.
